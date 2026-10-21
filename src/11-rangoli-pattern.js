@@ -16,9 +16,9 @@
  *
  * Pattern for n=3:
  *     *
- *   * *
+ *    * *
  *   * * *
- *   * *
+ *    * *
  *     *
  *
  * (Each row is a string in the returned array)
@@ -37,4 +37,32 @@
  */
 export function rangoli(n) {
   // Your code here
+  if (
+    typeof n !== "number" ||
+    !Number.isFinite(n) ||
+    !Number.isInteger(n) ||
+    n <= 0
+  ) {
+    return [];
+  }
+
+  const ans = [];
+
+  for (let i = 0; i < 2 * n - 1; i++) {
+    let stars = i < n ? i + 1 : 2 * n - i - 1;
+    let current = "";
+    const spaces = Math.abs(n - i - 1);
+    current += " ".repeat(spaces);
+
+    for (let j = 0; j < stars; j++) {
+      if (j === stars - 1) {
+        current += "*";
+      } else {
+        current += "* ";
+      }
+    }
+    ans.push(current);
+  }
+
+  return ans;
 }
